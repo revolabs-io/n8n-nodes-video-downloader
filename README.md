@@ -132,6 +132,10 @@ npm run dev
 
 This starts n8n with the node loaded for testing.
 
+## 📋 Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for a complete history of changes and releases.
+
 ## 🤝 Contributing
 
 We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
