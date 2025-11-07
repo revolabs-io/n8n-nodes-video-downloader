@@ -1,0 +1,150 @@
+{
+  "name": "n8n-nodes-m3u8-downloader",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -112,
+        32
+      ],
+      "id": "0753008b-7f77-4f67-8965-8a0e7aa662de",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "type": "auto",
+        "url": "https://raw.githubusercontent.com/mediaelement/mediaelement-files/refs/heads/master/big_buck_bunny.mp4",
+        "filename": "auto-output.mp4",
+        "cacheDir": "/Users/revolabs-io/Downloads",
+        "saveDir": "/Users/revolabs-io/Downloads",
+        "force": true
+      },
+      "type": "CUSTOM.videoDownloader",
+      "typeVersion": 1,
+      "position": [
+        112,
+        -160
+      ],
+      "id": "db3ddfda-a57f-4701-a944-de36af7071f3",
+      "name": "Auto"
+    },
+    {
+      "parameters": {
+        "type": "file",
+        "url": "https://raw.githubusercontent.com/mediaelement/mediaelement-files/refs/heads/master/big_buck_bunny.mp4",
+        "filename": "file-output.mp4",
+        "cacheDir": "/Users/revolabs-io/Downloads",
+        "saveDir": "/Users/revolabs-io/Downloads",
+        "force": true
+      },
+      "type": "CUSTOM.videoDownloader",
+      "typeVersion": 1,
+      "position": [
+        112,
+        32
+      ],
+      "id": "320eea73-2fd4-4326-bdf6-8f020782e11b",
+      "name": "File"
+    },
+    {
+      "parameters": {
+        "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+        "filename": "m3u8-output.mp4",
+        "cacheDir": "/Users/revolabs-io/Downloads",
+        "saveDir": "/Users/revolabs-io/Downloads",
+        "force": true
+      },
+      "type": "CUSTOM.videoDownloader",
+      "typeVersion": 1,
+      "position": [
+        112,
+        224
+      ],
+      "id": "e76a6ea7-285c-4aad-b66a-03b9dff3fd71",
+      "name": "M3U8"
+    },
+    {
+      "parameters": {
+        "fileSelector": "={{ $json.data.filepath }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        336,
+        32
+      ],
+      "id": "88b350bd-4ba4-4770-ad37-10563c3066b1",
+      "name": "Read Files from Disk"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Auto",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "File",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "M3U8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Auto": {
+      "main": [
+        [
+          {
+            "node": "Read Files from Disk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "M3U8": {
+      "main": [
+        [
+          {
+            "node": "Read Files from Disk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "File": {
+      "main": [
+        [
+          {
+            "node": "Read Files from Disk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "0e95d813-e3ce-4c95-9e07-c6b09c3c4830",
+  "meta": {
+    "instanceId": "5da6d2e0b6b655ccbfc80c98a3ef8ab7888b48cd1138f3fc1d01b41c2ddda3fa"
+  },
+  "id": "rfSuTXUrUocT0Rra",
+  "tags": []
+}

@@ -1,19 +1,29 @@
 {
-	"name": "n8n-nodes-<...>",
+	"name": "n8n-nodes-video-downloader",
 	"version": "0.1.0",
-	"description": "",
+	"description": "A comprehensive n8n community node for downloading and processing video content from various sources including M3U8 streams, direct video files, and social media platforms: Douyin, Weibo, Pipixia, ...",
 	"license": "MIT",
 	"homepage": "",
 	"keywords": [
-		"n8n-community-node-package"
+		"n8n-community-node-package",
+		"n8n-node-video-downloader",
+		"video-downloader",
+		"m3u8",
+		"m3u8-downloader",
+		"douyin-downloader",
+		"weibo-downloader",
+		"pipixia-downloader",
+		"douyin",
+		"weibo",
+		"pipixia"
 	],
 	"author": {
-		"name": "",
-		"email": ""
+		"name": "Hung Pham - @revolabs-io",
+		"email": "info@revolabs.io"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/<...>/n8n-nodes-<...>.git"
+		"url": "https://github.com/revolabs-io/n8n-nodes-video-downloader.git"
 	},
 	"scripts": {
 		"build": "n8n-node build",
@@ -30,13 +40,8 @@
 	"n8n": {
 		"n8nNodesApiVersion": 1,
 		"strict": true,
-		"credentials": [
-			"dist/credentials/GithubIssuesApi.credentials.js",
-			"dist/credentials/GithubIssuesOAuth2Api.credentials.js"
-		],
 		"nodes": [
-			"dist/nodes/GithubIssues/GithubIssues.node.js",
-			"dist/nodes/Example/Example.node.js"
+			"dist/nodes/videoDownloader/videoDownloader.node.js"
 		]
 	},
 	"devDependencies": {
@@ -48,5 +53,8 @@
 	},
 	"peerDependencies": {
 		"n8n-workflow": "*"
+	},
+	"dependencies": {
+		"@lzwme/m3u8-dl": "^1.4.3"
 	}
 }
