@@ -1,5 +1,5 @@
-import { m3u8Download, fileDownload, VideoParser } from '@lzwme/m3u8-dl';
-import type { M3u8DLOptions } from '@lzwme/m3u8-dl/cjs/types';
+import { m3u8Download, fileDownload, VideoParser } from '@lzwme/m3u8-dl'; // eslint-disable-line
+import type { M3u8DLOptions } from '@lzwme/m3u8-dl/cjs/types'; // eslint-disable-line
 
 import type {
 	IExecuteFunctions,
