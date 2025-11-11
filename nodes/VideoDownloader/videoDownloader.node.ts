@@ -15,7 +15,7 @@ import type {
 } from 'n8n-workflow';
 import { NodeConnectionTypes, NodeOperationError } from 'n8n-workflow';
 
-export class videoDownloader implements INodeType {
+export class VideoDownloader implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Video Downloader',
 		name: 'videoDownloader',
