@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-video-downloader",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"description": "A comprehensive n8n community node for downloading and processing video content from various sources including M3U8 streams, direct video files, and social media platforms: Douyin, Weibo, Pipixia, ...",
 	"license": "MIT",
 	"homepage": "",
