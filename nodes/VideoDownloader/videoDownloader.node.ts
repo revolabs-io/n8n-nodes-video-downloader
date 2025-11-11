@@ -1,5 +1,11 @@
 import { m3u8Download, fileDownload, VideoParser } from '@lzwme/m3u8-dl'; // eslint-disable-line
 import type { M3u8DLOptions } from '@lzwme/m3u8-dl/cjs/types'; // eslint-disable-line
+import { path as ffmpegPath } from '@ffmpeg-installer/ffmpeg'; // eslint-disable-line
+import { path as ffprobePath } from '@ffprobe-installer/ffprobe'; // eslint-disable-line
+import ffmpeg from 'fluent-ffmpeg'; // eslint-disable-line
+
+ffmpeg.setFfmpegPath(ffmpegPath);
+ffmpeg.setFfprobePath(ffprobePath);
 
 import type {
 	IExecuteFunctions,
@@ -237,6 +243,7 @@ export class videoDownloader implements INodeType {
 					force: force || false,
 					showProgress: true,
 					debug: false,
+					ffmpegPath: ffmpegPath,
 				};
 
 				Object.keys(downloadOptions).forEach((key) => {
@@ -256,13 +263,26 @@ export class videoDownloader implements INodeType {
 					result = await vp.download(url, downloadOptions);
 				}
 
-				if (!result.filepath) {
+				if (result.filepath) {
+					const probeData = await new Promise<ffmpeg.FfprobeData>((resolve, reject) => {
+						ffmpeg.ffprobe(result.filepath || '', (err, data) => {
+							if (err) {
+								reject(err);
+							}
+
+							resolve(data);
+						});
+					});
+
+					item.json.data = {
+						...result,
+						metadata: probeData,
+					};
+				} else {
 					throw new NodeOperationError(this.getNode(), result.errmsg || 'Download failed', {
 						itemIndex,
 					});
 				}
-
-				item.json.data = result;
 			} catch (error) {
 				// This node should never fail but we want to showcase how
 				// to handle errors.
