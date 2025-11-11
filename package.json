@@ -41,7 +41,7 @@
 		"n8nNodesApiVersion": 1,
 		"strict": true,
 		"nodes": [
-			"dist/nodes/videoDownloader/videoDownloader.node.js"
+			"dist/nodes/VideoDownloader/VideoDownloader.node.js"
 		]
 	},
 	"devDependencies": {
