@@ -1,11 +1,11 @@
 import { m3u8Download, fileDownload, VideoParser } from '@lzwme/m3u8-dl'; // eslint-disable-line
 import type { M3u8DLOptions } from '@lzwme/m3u8-dl/cjs/types'; // eslint-disable-line
-import { path as ffmpegPath } from '@ffmpeg-installer/ffmpeg'; // eslint-disable-line
-import { path as ffprobePath } from '@ffprobe-installer/ffprobe'; // eslint-disable-line
+import ffmpegPath from 'ffmpeg-static'; // eslint-disable-line
+import ffprobePath from 'ffprobe-static'; // eslint-disable-line
 import ffmpeg from 'fluent-ffmpeg'; // eslint-disable-line
 
-ffmpeg.setFfmpegPath(ffmpegPath);
-ffmpeg.setFfprobePath(ffprobePath);
+ffmpeg.setFfmpegPath(ffmpegPath as string);
+ffmpeg.setFfprobePath(ffprobePath.path as string);
 
 import type {
 	IExecuteFunctions,
@@ -243,7 +243,7 @@ export class VideoDownloader implements INodeType {
 					force: force || false,
 					showProgress: true,
 					debug: false,
-					ffmpegPath: ffmpegPath,
+					ffmpegPath: ffmpegPath as string,
 				};
 
 				Object.keys(downloadOptions).forEach((key) => {
