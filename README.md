@@ -12,6 +12,10 @@ A comprehensive n8n community node for downloading and processing video content 
 - 📊 **Progress Tracking**: Real-time download progress monitoring
 - 🛡️ **Error Handling**: Robust error handling with continue-on-fail options
 
+## 📸 Examples
+![Node Properties](screenshots/properties.png)
+
+
 ## 📦 Installation
 
 ### Community Node
@@ -69,10 +73,6 @@ The node automatically detects the download type based on URL patterns:
 - **Send Headers**: Enable custom HTTP headers
 - **Specify Headers**: Custom headers for requests (name/value pairs)
 - **Ignore Segments**: Skip specific time segments (format: `0-10,100-110`)
-
-## Node Properties
-![Node Properties](screenshots/properties.png)
-
 
 ## 🛡️ Error Handling
 
