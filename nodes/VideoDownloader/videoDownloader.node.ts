@@ -1,11 +1,10 @@
 import { m3u8Download, fileDownload, VideoParser } from '@lzwme/m3u8-dl'; // eslint-disable-line
 import type { M3u8DLOptions } from '@lzwme/m3u8-dl/cjs/types'; // eslint-disable-line
-import ffmpegPath from 'ffmpeg-static'; // eslint-disable-line
-import ffprobePath from 'ffprobe-static'; // eslint-disable-line
+import { ffmpegPath, ffprobePath } from 'ffmpeg-ffprobe-static'; // eslint-disable-line
 import ffmpeg from 'fluent-ffmpeg'; // eslint-disable-line
 
 ffmpeg.setFfmpegPath(ffmpegPath as string);
-ffmpeg.setFfprobePath(ffprobePath.path as string);
+ffmpeg.setFfprobePath(ffprobePath as string);
 
 import type {
 	IExecuteFunctions,

@@ -1,6 +1,6 @@
 # 🎬 n8n-nodes-video-downloader
 
-[![n8n node](https://img.shields.io/badge/Node-n8n-blue.svg)](https://n8n.io/)
+[![n8n node](https://img.shields.io/badge/Node-n8n-blue.svg)](https://n8n.io/) [![NPM Downloads](https://img.shields.io/npm/dm/n8n-nodes-video-downloader)](https://www.npmjs.com/package/n8n-nodes-video-downloader)
 
 A comprehensive n8n community node for downloading and processing video content from various sources including M3U8 streams, direct video files, and social media platforms: Douyin, Weibo, Pipixia, ...
 
@@ -14,7 +14,6 @@ A comprehensive n8n community node for downloading and processing video content 
 
 ## 📸 Examples
 ![Node Properties](screenshots/properties.png)
-
 
 ## 📦 Installation
 
