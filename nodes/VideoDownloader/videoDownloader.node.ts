@@ -1,10 +1,5 @@
 import { m3u8Download, fileDownload, VideoParser } from '@lzwme/m3u8-dl'; // eslint-disable-line
 import type { M3u8DLOptions } from '@lzwme/m3u8-dl/cjs/types'; // eslint-disable-line
-import { ffmpegPath, ffprobePath } from 'ffmpeg-ffprobe-static'; // eslint-disable-line
-import ffmpeg from 'fluent-ffmpeg'; // eslint-disable-line
-
-ffmpeg.setFfmpegPath(ffmpegPath as string);
-ffmpeg.setFfprobePath(ffprobePath as string);
 
 import type {
 	IExecuteFunctions,
@@ -13,6 +8,8 @@ import type {
 	INodeTypeDescription,
 } from 'n8n-workflow';
 import { NodeConnectionTypes, NodeOperationError } from 'n8n-workflow';
+
+import { getFfmpegFfprobe } from './utils';
 
 export class VideoDownloader implements INodeType {
 	description: INodeTypeDescription = {
@@ -230,6 +227,8 @@ export class VideoDownloader implements INodeType {
 				const force = this.getNodeParameter('force', itemIndex, true) as boolean;
 				item = items[itemIndex];
 
+				const { ffmpegPath } = await getFfmpegFfprobe();
+
 				const downloadOptions: M3u8DLOptions = {
 					delCache: delCache || false,
 					cacheDir: cacheDir || undefined,
@@ -242,7 +241,7 @@ export class VideoDownloader implements INodeType {
 					force: force || false,
 					showProgress: true,
 					debug: false,
-					ffmpegPath: ffmpegPath as string,
+					ffmpegPath,
 				};
 
 				Object.keys(downloadOptions).forEach((key) => {
@@ -263,19 +262,8 @@ export class VideoDownloader implements INodeType {
 				}
 
 				if (result.filepath) {
-					const probeData = await new Promise<ffmpeg.FfprobeData>((resolve, reject) => {
-						ffmpeg.ffprobe(result.filepath || '', (err, data) => {
-							if (err) {
-								reject(err);
-							}
-
-							resolve(data);
-						});
-					});
-
 					item.json.data = {
 						...result,
-						metadata: probeData,
 					};
 				} else {
 					throw new NodeOperationError(this.getNode(), result.errmsg || 'Download failed', {
